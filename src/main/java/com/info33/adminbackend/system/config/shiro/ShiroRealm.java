@@ -86,7 +86,7 @@ public class ShiroRealm extends AuthorizingRealm {
 //        log.info("---------------- Shiro 权限获取成功 ----------------------");
 //        return info;
 
-
+        //此处写死角色，需要可以自己完善
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         info.addRole("admin");
         info.addStringPermission("admin");

@@ -59,10 +59,6 @@ public class LoginController {
             if (subject.isAuthenticated()) {
                 JSONObject json = new JSONObject();
                 json.put("token", subject.getSession().getId());
-//                ((JSONObject) json).put("avatar","xxxxx");
-//                ((JSONObject) json).put("introduction","admin");
-//                ((JSONObject) json).put("name",username);
-//                ((JSONObject) json).put("roles","admin");
                 log.info("json:"+json);
                 return new Result(ResultStatusCode.OK, json);
             }else{
@@ -84,6 +80,7 @@ public class LoginController {
         JSONObject json = new JSONObject();
         json.put("avatar",sysUser.getHeadImg());
         json.put("name",sysUser.getTrueName());
+        //角色写死
         json.put("roles","admin");
         log.info("cuser/info/json:"+json);
         return new Result(ResultStatusCode.OK, json);
