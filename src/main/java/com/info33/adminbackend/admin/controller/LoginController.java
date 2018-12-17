@@ -1,8 +1,6 @@
 package com.info33.adminbackend.admin.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.info33.adminbackend.system.entity.SysRole;
 import com.info33.adminbackend.system.enums.ResultStatusCode;
 import com.info33.adminbackend.system.entity.Result;
 import com.info33.adminbackend.system.entity.SysUser;
