@@ -22,9 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.AbstractList;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * Created by Joker
@@ -40,7 +38,7 @@ public class LoginController {
 
     @GetMapping("test")
     public String test(){
-        return "test";
+        return "111";
     }
 
     @GetMapping("admin/test")
