@@ -1,7 +1,6 @@
 package com.info33.adminbackend.admin.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.time.LocalDateTime;
 import com.info33.adminbackend.system.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
