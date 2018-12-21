@@ -1,7 +1,10 @@
 package com.info33.adminbackend.system.controller;
 
 import com.info33.adminbackend.system.entity.Result;
+import com.info33.adminbackend.system.entity.SysPictureManage;
 import com.info33.adminbackend.system.enums.ResultStatusCode;
+import com.info33.adminbackend.system.service.ISysPictureManageService;
+import com.info33.adminbackend.system.utils.FileSize;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.auth.BasicCOSCredentials;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
 
@@ -27,6 +31,8 @@ import java.io.IOException;
 @RestController
 @RequestMapping(value = "admin/upload")
 public class UploadController {
+    @Resource
+    private ISysPictureManageService iSysPictureManageService;
 
     @Value("${tengxun.accessKey}")
     private String accessKey;
@@ -77,6 +83,14 @@ public class UploadController {
             String key = "/" + this.qianzhui + "/information/" + newFileName;
             PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, key, localFile);
             PutObjectResult putObjectResult = cosclient.putObject(putObjectRequest);
+
+            //存入数据库作为图片管理
+            SysPictureManage sysPictureManage = new SysPictureManage();
+            sysPictureManage.setPictureName(newFileName);
+            sysPictureManage.setPictureSize(FileSize.getPrintSize(file.getSize()));
+            sysPictureManage.setPictureKey(key);
+            sysPictureManage.setPictureUrl(this.path + putObjectRequest.getKey());
+            iSysPictureManageService.save(sysPictureManage);
 
             return new Result(ResultStatusCode.OK,this.path + putObjectRequest.getKey());
 //            return new UploadMsg(1, "上传成功", this.path + putObjectRequest.getKey());

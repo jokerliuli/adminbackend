@@ -16,7 +16,6 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -36,9 +35,9 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager());
         // 未授权界面;
-        shiroFilterFactoryBean.setUnauthorizedUrl("common/unauth");
+//        shiroFilterFactoryBean.setUnauthorizedUrl("common/unauth");
         // 没有登陆的用户只能访问登陆页面，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
-        shiroFilterFactoryBean.setLoginUrl("/common/unauth");
+//        shiroFilterFactoryBean.setLoginUrl("/common/unauth");
         Map<String, String> filterChainDefinitionManager = new LinkedHashMap<String, String>();
         // 公共请求
         filterChainDefinitionManager.put("/common/**", "anon");

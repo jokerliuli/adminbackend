@@ -49,6 +49,11 @@ public class InformationController {
         return new Result(ResultStatusCode.OK,iInfomationService.updateById(information));
     }
 
+    @GetMapping("getOne")
+    public Result getOne(@RequestParam(name = "id") Long id){
+        return new Result(ResultStatusCode.OK,iInfomationService.getById(id));
+    }
+
     @PostMapping("page")
     public Result page(@RequestParam(name = "page") int page,
                                    @RequestParam(name = "limit") int limit,
