@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8090
 tengxun:
   accessKey: AKIDKURB2jcVYLuDH4JuwiEUUEiwwiFYiU7Y
   secretKey: MVRM5aswnPmtpXzISSEm5A0d2ECwSkqj
