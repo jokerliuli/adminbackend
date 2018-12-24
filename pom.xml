@@ -16,6 +16,7 @@
     <description>Demo project for Spring Boot</description>
 
     <properties>
+        <!--docker前缀-->
         <docker.image.prefix>jokerliuli</docker.image.prefix>
         <java.version>1.8</java.version>
     </properties>
@@ -36,6 +37,7 @@
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <!--lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -45,14 +47,8 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>ch.qos.logback</groupId>
-                    <artifactId>logback-classic</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
-
+        <!--mybatis-plus-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
@@ -123,6 +119,7 @@
             <groupId>com.qcloud</groupId>
             <artifactId>cos_api</artifactId>
             <version>5.4.9</version>
+            <!--去除log4j冲突-->
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
