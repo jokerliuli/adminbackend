@@ -5,6 +5,6 @@ shiro配置方面采用ehcache缓存技术，可以自行替换redis。realm配�
 ##  mybatis-plus
 mybatis-plus方面参考官方文档https://mp.baomidou.com/
 ##  Swagger2
-Swagger2自动生成api文档界面http://localhost:8080/swagger-ui.html
+Swagger2自动生成api文档界面http://localhost:8090/swagger-ui.html
 ##  前台代码
 前台是vue，详细代码在33infobackend-vue里，此处已经打包放到resource/static目录下，配置好数据库可以直接访问
