@@ -6,6 +6,9 @@ import com.info33.adminbackend.system.service.ISysMenuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.util.List;
+
 /**
  * <p>
  * 系统菜单表 服务实现类
@@ -17,4 +20,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements ISysMenuService {
 
+    @Resource
+    private SysMenuMapper sysMenuMapper;
+
+    @Override
+    public List<SysMenu> getAllMenuByRoleId(Long roleId) {
+        return sysMenuMapper.getAllMenuByRoleId(roleId);
+    }
 }

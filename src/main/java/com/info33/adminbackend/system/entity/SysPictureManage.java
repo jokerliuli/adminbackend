@@ -39,5 +39,8 @@ public class SysPictureManage extends BaseEntity {
      */
     private String pictureKey;
 
-
+    /**
+     * 图片尺寸长*宽
+     */
+    private String pictureDimension;
 }

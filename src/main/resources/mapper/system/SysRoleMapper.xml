@@ -2,4 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.info33.adminbackend.system.mapper.SysRoleMapper">
 
+    <select id="findByUserId" resultType="com.info33.adminbackend.system.entity.SysRole">
+        select *
+        from sys_role a left join sys_user_role b on a.id=b.role_id
+        where b.user_id=#{userId}
+    </select>
 </mapper>

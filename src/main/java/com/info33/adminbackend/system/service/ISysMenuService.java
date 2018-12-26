@@ -3,6 +3,8 @@ package com.info33.adminbackend.system.service;
 import com.info33.adminbackend.system.entity.SysMenu;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  * 系统菜单表 服务类
@@ -12,5 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2018-12-11
  */
 public interface ISysMenuService extends IService<SysMenu> {
-
+    List<SysMenu> getAllMenuByRoleId(Long roleId);
 }

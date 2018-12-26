@@ -8,8 +8,11 @@ import com.google.common.base.CaseFormat;
 import com.info33.adminbackend.admin.entity.Information;
 import com.info33.adminbackend.admin.service.IInformationService;
 import com.info33.adminbackend.system.entity.Result;
+import com.info33.adminbackend.system.entity.SysPictureManage;
 import com.info33.adminbackend.system.enums.ResultStatusCode;
+import com.info33.adminbackend.system.service.ISysPictureManageService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -30,30 +33,41 @@ public class InformationController {
     @Resource
     private IInformationService iInfomationService;
 
+    @Resource
+    private ISysPictureManageService iSysPictureManageService;
+
+    @RequiresPermissions("information:add")
     @PostMapping("save")
     public Result save(@RequestBody Information information){
         log.info(information.toString());
+        QueryWrapper<SysPictureManage> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("picture_url",information.getThumbnail());
+        SysPictureManage sysPictureManage = iSysPictureManageService.getOne(queryWrapper);
+        sysPictureManage.setStatus(1);
+        iSysPictureManageService.updateById(sysPictureManage);
         information.setUpdateDate(null);
         return new Result(ResultStatusCode.OK,iInfomationService.save(information));
     }
+
+    @RequiresPermissions("information:del")
     @PostMapping("remove")
     public Result remove(@RequestBody Information information){
         information.setStatus(0);
         return new Result(ResultStatusCode.OK,iInfomationService.updateById(information));
     }
-
+    @RequiresPermissions("information:edit")
     @PostMapping("update")
     public Result update(@RequestBody Information information){
         log.info(information.getCreateDate());
         information.setUpdateDate(null);
         return new Result(ResultStatusCode.OK,iInfomationService.updateById(information));
     }
-
+    @RequiresPermissions("information:search")
     @GetMapping("getOne")
     public Result getOne(@RequestParam(name = "id") Long id){
         return new Result(ResultStatusCode.OK,iInfomationService.getById(id));
     }
-
+    @RequiresPermissions("information:search")
     @PostMapping("page")
     public Result page(@RequestParam(name = "page") int page,
                                    @RequestParam(name = "limit") int limit,

@@ -34,26 +34,32 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilterFactoryBean() {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager());
-        // 未授权界面;
-//        shiroFilterFactoryBean.setUnauthorizedUrl("common/unauth");
         // 没有登陆的用户只能访问登陆页面，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
+        shiroFilterFactoryBean.setLoginUrl("/common/ok");
 //        shiroFilterFactoryBean.setLoginUrl("/common/unauth");
+        // 登录成功后要跳转的链接
+        //shiroFilterFactoryBean.setSuccessUrl("/auth/index");
+        // 未授权界面;
+        shiroFilterFactoryBean.setUnauthorizedUrl("common/unauth");
+
         Map<String, String> filterChainDefinitionManager = new LinkedHashMap<String, String>();
+        //注意过滤器配置顺序 不能颠倒
+        //配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了，登出后跳转配置的loginUrl
+        filterChainDefinitionManager.put("/logout", "logout");
         // 公共请求
         filterChainDefinitionManager.put("/common/**", "anon");
-        // 静态资源
-        filterChainDefinitionManager.put("/static/**", "anon");
+        // 测试方法
+        filterChainDefinitionManager.put("/test", "anon");
         // 登录方法
         filterChainDefinitionManager.put("/login", "anon");
 //        filterChainDefinitionManager.put("/admin/login*", "anon"); // 表示可以匿名访问
         // 注册方法
         filterChainDefinitionManager.put("/register", "anon");
 //        filterChainDefinitionManager.put("/admin/register*", "anon"); // 表示可以匿名访问
-
 //        filterChainDefinitionManager.put("/user/**", "authc,roles[ROLE_USER]");//用户为ROLE_USER 角色可以访问。由用户角色控制用户行为。
         //需要admin的操作
         filterChainDefinitionManager.put("/admin/*", "authc,roles[admin]");
-
+        filterChainDefinitionManager.put("/**", "authc");
 //        filterChainDefinitionManager.put("/**", "anon");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionManager);
 //
@@ -65,10 +71,11 @@ public class ShiroConfig {
 
     /**
      * SecurityManager，权限管理，这个类组合了登陆，登出，权限，session的处理，是个比较重要的类。
-     //     */
+     * //
+     */
     @Bean
-    public SecurityManager securityManager(){
-        DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
+    public SecurityManager securityManager() {
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         //设置realm.
         securityManager.setRealm(myShiroRealm());
         // 自定义缓存实现 使用redis
@@ -84,6 +91,7 @@ public class ShiroConfig {
         myShiroRealm.setCredentialsMatcher(credentialsMatcher());
         return myShiroRealm;
     }
+
     //设置自己加密方式
     @Bean
     public CredentialsMatcher credentialsMatcher() {
@@ -107,8 +115,8 @@ public class ShiroConfig {
     }
 
 
-
     //第三步获得session管理器
+
     /**
      * shiro session的管理
      */
@@ -125,15 +133,13 @@ public class ShiroConfig {
         sessionManager.setSessionIdUrlRewritingEnabled(false);
         sessionManager.setDeleteInvalidSessions(true);
         sessionManager.setSessionIdCookie(simpleCookie);
-        return  sessionManager;
+        return sessionManager;
     }
 
     @Bean
-    public SessionDAO sessionDAO(){
+    public SessionDAO sessionDAO() {
         return new MemorySessionDAO();
     }
-
-
 
 
     /**

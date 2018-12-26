@@ -20,7 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
@@ -85,11 +88,13 @@ public class UploadController {
             PutObjectResult putObjectResult = cosclient.putObject(putObjectRequest);
 
             //存入数据库作为图片管理
+            BufferedImage sourceImg =ImageIO.read(new FileInputStream(localFile));
             SysPictureManage sysPictureManage = new SysPictureManage();
             sysPictureManage.setPictureName(newFileName);
             sysPictureManage.setPictureSize(FileSize.getPrintSize(file.getSize()));
             sysPictureManage.setPictureKey(key);
             sysPictureManage.setPictureUrl(this.path + putObjectRequest.getKey());
+            sysPictureManage.setPictureDimension(sourceImg.getWidth() + "*" + sourceImg.getHeight());
             iSysPictureManageService.save(sysPictureManage);
 
             return new Result(ResultStatusCode.OK,this.path + putObjectRequest.getKey());

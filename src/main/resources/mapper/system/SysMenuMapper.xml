@@ -2,4 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.info33.adminbackend.system.mapper.SysMenuMapper">
 
+    <select id="getAllMenuByRoleId" resultType="com.info33.adminbackend.system.entity.SysMenu">
+        select
+        *
+        from sys_menu a left join sys_role_menu b on a.id=b.menu_id
+        where b.role_id=#{roleId}
+    </select>
 </mapper>

@@ -10,6 +10,7 @@ import com.info33.adminbackend.admin.service.ILeavemesService;
 import com.info33.adminbackend.system.entity.Result;
 import com.info33.adminbackend.system.enums.ResultStatusCode;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -28,26 +29,26 @@ import javax.annotation.Resource;
 public class LeavemesController {
     @Resource
     private ILeavemesService iLeavemesService;
-
+    @RequiresPermissions("leavemes:add")
     @PostMapping("save")
     public Result save(@RequestBody Leavemes leavemes) {
         leavemes.setUpdateDate(null);
         return new Result(ResultStatusCode.OK,iLeavemesService.save(leavemes));
     }
-
+    @RequiresPermissions("leavemes:del")
     @PostMapping("remove")
     public Result remove(@RequestBody Leavemes leavemes) {
         leavemes.setUpdateDate(null);
         leavemes.setStatus(0);
         return new Result(ResultStatusCode.OK,iLeavemesService.updateById(leavemes));
     }
-
+    @RequiresPermissions("leavemes:edit")
     @PostMapping("update")
     public Result update(@RequestBody Leavemes leavemes) {
         leavemes.setUpdateDate(null);
         return new Result(ResultStatusCode.OK,iLeavemesService.updateById(leavemes));
     }
-
+    @RequiresPermissions("leavemes:search")
     @PostMapping("page")
     public Result page(@RequestParam(name = "page") int page,
                                 @RequestParam(name = "limit") int limit,

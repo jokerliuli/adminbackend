@@ -2,9 +2,15 @@ package com.info33.adminbackend.system.config.shiro;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.info33.adminbackend.system.entity.SysMenu;
+import com.info33.adminbackend.system.entity.SysRole;
 import com.info33.adminbackend.system.entity.SysUser;
+import com.info33.adminbackend.system.service.ISysMenuService;
+import com.info33.adminbackend.system.service.ISysRoleService;
 import com.info33.adminbackend.system.service.ISysUserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -12,6 +18,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 
 
 @Slf4j
@@ -20,6 +27,12 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Autowired
     private ISysUserService iSysUserService;
+
+    @Autowired
+    private ISysRoleService iSysRoleService;
+
+    @Autowired
+    private ISysMenuService iSysMenuService;
 
     /**
      * 认证信息.(身份验证) : Authentication 是用来验证用户身份
@@ -57,40 +70,40 @@ public class ShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         log.info("---------------- 执行 Shiro 权限获取 ---------------------");
-//        Object principal = principals.getPrimaryPrincipal();
-//        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-//        if (principal instanceof User) {
-//            User userLogin = (User) principal;
-//            if(userLogin != null){
-//                List<Role> roleList = roleService.findByUserid(userLogin.getId());
-//                if(CollectionUtils.isNotEmpty(roleList)){
-//                    for(Role role : roleList){
-//                        log.info(role.getEnname());
-//                        info.addRole(role.getEnname());
-//
-//                        List<Menu> menuList = menuService.getAllMenuByRoleId(role.getId());
-//                        if(CollectionUtils.isNotEmpty(menuList)){
-//                            for (Menu menu : menuList){
-//                                if(StringUtils.isNoneBlank(menu.getPermission())){
-//                                    info.addStringPermission(menu.getPermission());
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        log.info("---------------- 获取到以下权限 ----------------");
-//        log.info(String.valueOf(info));
-//        log.info(info.getStringPermissions().toString());
-//        log.info("---------------- Shiro 权限获取成功 ----------------------");
-//        return info;
+        Object principal = principals.getPrimaryPrincipal();
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        if (principal instanceof SysUser) {
+            SysUser userLogin = (SysUser) principal;
+            if(userLogin != null){
+                List<SysRole> roleList = iSysRoleService.findByUserid(userLogin.getId());
+                if(CollectionUtils.isNotEmpty(roleList)){
+                    for(SysRole role : roleList){
+                        log.info(role.getName());
+                        info.addRole(role.getName());
+
+                        List<SysMenu> menuList = iSysMenuService.getAllMenuByRoleId(role.getId());
+                        if(CollectionUtils.isNotEmpty(menuList)){
+                            for (SysMenu menu : menuList){
+                                if(StringUtils.isNoneBlank(menu.getMenuPermission())){
+                                    info.addStringPermission(menu.getMenuPermission());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        log.info("---------------- 获取到以下权限 ----------------");
+        log.info(String.valueOf(info));
+        log.info(info.getStringPermissions().toString());
+        log.info("---------------- Shiro 权限获取成功 ----------------------");
+        return info;
 
         //此处写死角色，需要可以自己完善
-        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        info.addRole("admin");
-        info.addStringPermission("admin");
-        return info;
+//        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+//        info.addRole("admin");
+//        info.addStringPermission("admin");
+//        return info;
 
     }
 }
