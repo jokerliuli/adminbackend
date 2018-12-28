@@ -43,8 +43,10 @@ public class InformationController {
         QueryWrapper<SysPictureManage> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("picture_url",information.getThumbnail());
         SysPictureManage sysPictureManage = iSysPictureManageService.getOne(queryWrapper);
-        sysPictureManage.setStatus(1);
-        iSysPictureManageService.updateById(sysPictureManage);
+        if(sysPictureManage != null){
+            sysPictureManage.setStatus(1);
+            iSysPictureManageService.updateById(sysPictureManage);
+        }
         information.setUpdateDate(null);
         return new Result(ResultStatusCode.OK,iInfomationService.save(information));
     }
@@ -59,6 +61,13 @@ public class InformationController {
     @PostMapping("update")
     public Result update(@RequestBody Information information){
         log.info(information.getCreateDate());
+        QueryWrapper<SysPictureManage> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("picture_url",information.getThumbnail());
+        SysPictureManage sysPictureManage = iSysPictureManageService.getOne(queryWrapper);
+        if(sysPictureManage != null){
+            sysPictureManage.setStatus(1);
+            iSysPictureManageService.updateById(sysPictureManage);
+        }
         information.setUpdateDate(null);
         return new Result(ResultStatusCode.OK,iInfomationService.updateById(information));
     }

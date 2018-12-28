@@ -42,7 +42,7 @@ public class ShiroConfig {
         // 未授权界面;
         shiroFilterFactoryBean.setUnauthorizedUrl("common/unauth");
 
-        Map<String, String> filterChainDefinitionManager = new LinkedHashMap<String, String>();
+        Map<String, String> filterChainDefinitionManager = new LinkedHashMap<>();
         //注意过滤器配置顺序 不能颠倒
         //配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了，登出后跳转配置的loginUrl
         filterChainDefinitionManager.put("/logout", "logout");
@@ -50,6 +50,8 @@ public class ShiroConfig {
         filterChainDefinitionManager.put("/common/**", "anon");
         // 测试方法
         filterChainDefinitionManager.put("/test", "anon");
+        // 静态资源
+        filterChainDefinitionManager.put("/static/**", "anon");
         // 登录方法
         filterChainDefinitionManager.put("/login", "anon");
 //        filterChainDefinitionManager.put("/admin/login*", "anon"); // 表示可以匿名访问
@@ -58,7 +60,14 @@ public class ShiroConfig {
 //        filterChainDefinitionManager.put("/admin/register*", "anon"); // 表示可以匿名访问
 //        filterChainDefinitionManager.put("/user/**", "authc,roles[ROLE_USER]");//用户为ROLE_USER 角色可以访问。由用户角色控制用户行为。
         //需要admin的操作
-        filterChainDefinitionManager.put("/admin/*", "authc,roles[admin]");
+        filterChainDefinitionManager.put("/admin/**", "authc,roles[admin]");
+        //swagger2
+        filterChainDefinitionManager.put("/swagger-ui.html", "anon");
+        filterChainDefinitionManager.put("/swagger-resources/**", "anon");
+        filterChainDefinitionManager.put("/v2/**", "anon");
+        filterChainDefinitionManager.put("/webjars/**", "anon");
+
+
         filterChainDefinitionManager.put("/**", "authc");
 //        filterChainDefinitionManager.put("/**", "anon");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionManager);
