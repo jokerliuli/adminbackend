@@ -16,10 +16,10 @@ import java.util.List;
 import static com.google.common.collect.Lists.newArrayList;
 
 /**
- *
- * Swagger2Config
- * 自动生成api在线文档
- */
+ * @author JokerLiu
+ * @create 2018-12-29 10:36
+ * @desc Swagger2Config自动生成api在线文档
+ **/
 @Configuration
 @EnableSwagger2
 public class Swagger2Config {
@@ -73,7 +73,10 @@ public class Swagger2Config {
 //
 //
 //
-    //构建 api文档的详细信息函数,注意这里的注解引用的是哪个
+
+    /**
+     * 构建 api文档的详细信息函数,注意这里的注解引用的是哪个
+     */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 //页面标题

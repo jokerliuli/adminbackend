@@ -1,15 +1,13 @@
-/**
- * Copyright &copy; 2012-2014 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.info33.adminbackend.system.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 /**
- * 日期工具类
- */
+ * @author JokerLiu
+ * @create 2018-12-29 10:36
+ * @desc 日期工具类
+ **/
 public class DateUtils {
 	
 	/**
@@ -36,7 +34,7 @@ public class DateUtils {
 	 * @return
 	 */
 	public static long pastDays(Date date) {
-		long t = new Date().getTime()-date.getTime();
+		long t = System.currentTimeMillis()-date.getTime();
 		return t/(24*60*60*1000);
 	}
 
@@ -46,7 +44,7 @@ public class DateUtils {
 	 * @return
 	 */
 	public static long pastHour(Date date) {
-		long t = new Date().getTime()-date.getTime();
+		long t = System.currentTimeMillis()-date.getTime();
 		return t/(60*60*1000);
 	}
 	
@@ -56,7 +54,7 @@ public class DateUtils {
 	 * @return
 	 */
 	public static long pastMinutes(Date date) {
-		long t = new Date().getTime()-date.getTime();
+		long t =System.currentTimeMillis()-date.getTime();
 		return t/(60*1000);
 	}
 	

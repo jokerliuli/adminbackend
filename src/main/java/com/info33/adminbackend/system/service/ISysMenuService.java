@@ -14,5 +14,10 @@ import java.util.List;
  * @since 2018-12-11
  */
 public interface ISysMenuService extends IService<SysMenu> {
+    /**
+     * 根据roleId获得所有菜单权限
+     * @param roleId
+     * @return List<SysMenu>
+     */
     List<SysMenu> getAllMenuByRoleId(Long roleId);
 }

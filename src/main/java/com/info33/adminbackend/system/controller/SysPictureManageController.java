@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.base.CaseFormat;
 import com.info33.adminbackend.system.entity.Result;
 import com.info33.adminbackend.system.entity.SysPictureManage;
+import com.info33.adminbackend.system.enums.CommonStatus;
 import com.info33.adminbackend.system.enums.ResultStatusCode;
 import com.info33.adminbackend.system.service.ISysPictureManageService;
 import lombok.extern.slf4j.Slf4j;
@@ -57,7 +58,7 @@ public class SysPictureManageController {
                        @RequestParam(name = "status",required = false) Integer  status,
                        @RequestParam(name = "pictureName",required = false) String pictureName,
                        @RequestParam(name = "prop",required = false,defaultValue = "id") String prop,
-                       @RequestParam(name = "order",required = false,defaultValue = "descending") String order){
+                       @RequestParam(name = "order",required = false,defaultValue = "Desc") String order){
 
         IPage<SysPictureManage> pcitureIPage = new Page<>();
         pcitureIPage.setCurrent(page);
@@ -66,7 +67,7 @@ public class SysPictureManageController {
         QueryWrapper<SysPictureManage> queryWrapper = new QueryWrapper<>();
         prop = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, prop);
 
-        if (order.equals("descending")){
+        if (CommonStatus.DESC.getMsg().equals(order)){
             queryWrapper.orderByDesc(prop);
         }else{
             queryWrapper.orderByAsc(prop);

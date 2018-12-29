@@ -4,13 +4,15 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.Date;
+
 
 /**
  * 所有对象的基类，所有对象必须继承
  *
+ * Created by Joker
+ * Date： 2018/12/11
+ * Time: 9:49
+ * @author alex
  */
 @Data
 public class BaseEntity implements java.io.Serializable {

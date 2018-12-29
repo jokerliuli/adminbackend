@@ -6,6 +6,14 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+/**
+ * <p>
+ * common 模块
+ * </p>
+ *
+ * @author alex
+ * @since 2018-12-12
+ */
 
 @RequestMapping("/common")
 @RestController

@@ -1,7 +1,6 @@
 package com.info33.adminbackend.system.config.shiro;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.apache.shiro.web.util.WebUtils;
@@ -9,10 +8,12 @@ import org.apache.shiro.web.util.WebUtils;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import java.io.Serializable;
-
 /**
- * 修改获取token的方式sessionId
- */
+ * @author JokerLiu
+ * @create 2018-12-29 10:36
+ * @desc 修改获取token的方式sessionId
+ **/
+
 public class ShiroSessionManager extends DefaultWebSessionManager {
     private static final String AUTHORIZATION = "Authorization";
 

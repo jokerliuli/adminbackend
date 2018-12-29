@@ -5,10 +5,11 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
-
 /**
- * 密码加密算法
- */
+ * @author JokerLiu
+ * @create 2018-12-29 10:36
+ * @desc 加密算法
+ **/
 public class CredentialsMatcher extends SimpleCredentialsMatcher {
 
 	@Override

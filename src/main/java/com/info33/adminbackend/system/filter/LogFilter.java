@@ -13,16 +13,17 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Map;
-
 /**
- * 日志过滤器
- */
+ * @author JokerLiu
+ * @create 2018-12-29 10:36
+ * @desc 日志过滤器
+ **/
 @Slf4j
 @Aspect
 @Component
 public class LogFilter {
 
-    private static final ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
     private long startTimeMillis;
 
@@ -83,7 +84,7 @@ public class LogFilter {
             buf.append((String) entry.getKey());
             buf.append(" = ");
             try {
-                buf.append(mapper.writeValueAsString(entry.getValue()));
+                buf.append(MAPPER.writeValueAsString(entry.getValue()));
                 buf.append("\n");
             }
             catch (IOException e) {
@@ -91,7 +92,8 @@ public class LogFilter {
             }
         }
 
-        if (buf.length() > 0)
+        if (buf.length() > 0) {
             log.info("{}:\n{}", new Object[] { prefix, buf.substring(0, buf.length() - 1) });
+        }
     }
 }

@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * Created by Joker
- * Date： 2018/12/10
- * Time: 14:37
- */
+ * @author JokerLiu
+ * @create 2018-12-29 10:36
+ * @desc MybatisPlusConfig
+ **/
 @EnableTransactionManagement
 @Configuration
 @MapperScan("com.info33.adminbackend.*.mapper*")

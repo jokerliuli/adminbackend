@@ -9,6 +9,9 @@ package com.info33.adminbackend.system.enums;
  * @return
  */
 public enum ResultStatusCode {
+    /**
+     * 请求结果Ok
+     */
     OK(0, "OK"),
     SIGN_ERROR(120, "签名错误"),
     TIME_OUT(130, "访问超时"),
@@ -46,7 +49,7 @@ public enum ResultStatusCode {
         this.msg = msg;
     }
 
-    private ResultStatusCode(int code, String msg) {
+    ResultStatusCode(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }

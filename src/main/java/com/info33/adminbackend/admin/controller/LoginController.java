@@ -23,10 +23,10 @@ import javax.annotation.Resource;
 
 
 /**
- * Created by Joker
- * Date： 2018/12/11
- * Time: 9:49
- */
+ * @author JokerLiu
+ * @create 2018-12-29 10:36
+ * @desc 登陆controller
+ **/
 @Slf4j
 @RestController
 public class LoginController {

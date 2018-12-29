@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.info33.adminbackend.system.entity.SysMenu;
 import com.info33.adminbackend.system.entity.SysRole;
 import com.info33.adminbackend.system.entity.SysUser;
+import com.info33.adminbackend.system.enums.CommonStatus;
 import com.info33.adminbackend.system.service.ISysMenuService;
 import com.info33.adminbackend.system.service.ISysRoleService;
 import com.info33.adminbackend.system.service.ISysUserService;
@@ -19,7 +20,11 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-
+/**
+ * @author JokerLiu
+ * @create 2018-12-29 10:36
+ * @desc ShiroRealm
+ **/
 
 @Slf4j
 public class ShiroRealm extends AuthorizingRealm {
@@ -50,14 +55,17 @@ public class ShiroRealm extends AuthorizingRealm {
 
             if (user != null) {
                 // 用户为禁用状态'数据状态 1可用，0不可用'
-                if (user.getStatus().equals("0")) {
+                if (CommonStatus.PROHIBIT.equals(user.getStatus())) {
                     throw new DisabledAccountException();
                 }
                 log.info("---------------- Shiro 凭证认证成功 ----------------------");
                 SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-                        user, //用户
-                        user.getPassword(), //密码
-                        getName()  //realm name
+                        //用户
+                        user,
+                        //密码
+                        user.getPassword(),
+                        //realm name
+                        getName()
                 );
                 return authenticationInfo;
             }

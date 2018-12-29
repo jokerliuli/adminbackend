@@ -3,8 +3,8 @@
 
     <contextName>logback-demo</contextName>
 
-    <property name="logback.logdir" value="D:/idea/workspace/log"/>
-    <property name="logback.appname" value="springboot"/>
+    <property name="logback.logdir" value="log"/>
+    <property name="logback.appname" value="adminbackend"/>
 
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 -->

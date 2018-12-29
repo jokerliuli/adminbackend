@@ -9,9 +9,18 @@ import com.info33.adminbackend.system.enums.ResultStatusCode;
  *
  */
 public class Result {
-	private int code;		//返回的代码，0表示成功，其他表示失败
-    private String msg;		//成功或失败时返回的错误信息
-    private Object data;	//成功时返回的数据信息
+	/**
+	 * 返回的代码，0表示成功，其他表示失败
+	 */
+	private int code;
+	/**
+	 * 成功或失败时返回的错误信息
+	 */
+    private String msg;
+	/**
+	 * 成功时返回的数据信息
+	 */
+	private Object data;
 
 	public Result(int code, String msg, Object data){
 		this.code = code;

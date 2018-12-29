@@ -20,10 +20,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Created by Joker
- * Date： 2018/12/10
- * Time: 16:28
- */
+ * @author JokerLiu
+ * @create 2018-12-29 10:36
+ * @desc ShiroConfig
+ **/
 @Configuration
 public class ShiroConfig {
     /**
@@ -93,7 +93,9 @@ public class ShiroConfig {
         return securityManager;
     }
 
-    //第一步获得realm
+    /**
+     * 第一步获得realm
+     */
     @Bean
     public ShiroRealm myShiroRealm() {
         ShiroRealm myShiroRealm = new ShiroRealm();
@@ -101,28 +103,35 @@ public class ShiroConfig {
         return myShiroRealm;
     }
 
-    //设置自己加密方式
+    /**
+     * 设置自己加密方式
+     * @return
+     */
+
     @Bean
     public CredentialsMatcher credentialsMatcher() {
         return new CredentialsMatcher();
     }
 
-    //第二步获得cache管理器
-//    @Bean
-//    public EhCacheManager ehCacheManager() {
-//        EhCacheManager em = new EhCacheManager();
-//        //将ehcacheManager转换成shiro包装后的ehcacheManager对象
-////        em.setCacheManager(cacheManager);
-//        em.setCacheManagerConfigFile("classpath:ehcache.xml");
-//        return em;
-//    }
+    /**
+     * 第二步获得cache管理器
+     */
+
+
     @Bean
     public EhCacheManager getEhCacheManager() {
         EhCacheManager em = new EhCacheManager();
         em.setCacheManagerConfigFile("classpath:ehcache-shiro.xml");
         return em;
     }
-
+//       @Bean
+//         public EhCacheManager ehCacheManager() {
+//             EhCacheManager em = new EhCacheManager();
+//              //将ehcacheManager转换成shiro包装后的ehcacheManager对象
+//      //        em.setCacheManager(cacheManager);
+//              em.setCacheManagerConfigFile("classpath:ehcache.xml");
+//              return em;
+//          }
 
     //第三步获得session管理器
 

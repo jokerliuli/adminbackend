@@ -17,7 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.validation.ConstraintViolationException;
-
+/**
+ * @author JokerLiu
+ * @create 2018-12-29 10:36
+ * @desc 全局异常处理
+ **/
 @Slf4j
 @ControllerAdvice
 @ResponseBody

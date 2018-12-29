@@ -9,6 +9,7 @@ import com.info33.adminbackend.admin.entity.Information;
 import com.info33.adminbackend.admin.service.IInformationService;
 import com.info33.adminbackend.system.entity.Result;
 import com.info33.adminbackend.system.entity.SysPictureManage;
+import com.info33.adminbackend.system.enums.CommonStatus;
 import com.info33.adminbackend.system.enums.ResultStatusCode;
 import com.info33.adminbackend.system.service.ISysPictureManageService;
 import lombok.extern.slf4j.Slf4j;
@@ -84,14 +85,14 @@ public class InformationController {
                                    @RequestParam(name = "informationType",required = false) Integer  informationType,
                                    @RequestParam(name = "title",required = false) String title,
                                    @RequestParam(name = "prop",required = false,defaultValue = "update_date") String prop,
-                                   @RequestParam(name = "order",required = false,defaultValue = "descending") String order){
+                                   @RequestParam(name = "order",required = false,defaultValue = "Desc") String order){
         IPage<Information> informationIPage = new Page<>();
         informationIPage.setCurrent(page);
         informationIPage.setSize(limit);
         QueryWrapper<Information> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("status", 1);
         prop = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, prop);
-        if (order.equals("descending")){
+        if (CommonStatus.DESC.getMsg().equals(order)){
             queryWrapper.orderByDesc(prop);
         }else{
             queryWrapper.orderByAsc(prop);

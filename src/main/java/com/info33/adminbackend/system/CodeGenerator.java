@@ -18,8 +18,9 @@ import java.util.Scanner;
  * Created by Joker
  * Date： 2018/12/10
  * Time: 13:57
+ *@author alex
+ * 演示例子，执行 main 方法控制台输入模块表名回车自动生成对应项目目录中
  */
-// 演示例子，执行 main 方法控制台输入模块表名回车自动生成对应项目目录中
 public class CodeGenerator {
 
     /**
@@ -48,7 +49,7 @@ public class CodeGenerator {
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
         gc.setOutputDir(projectPath + "/src/main/java");
-        gc.setAuthor("alex");
+        gc.setAuthor("JokerLiu");
         gc.setOpen(false);
         mpg.setGlobalConfig(gc);
 
@@ -57,8 +58,8 @@ public class CodeGenerator {
         dsc.setUrl("jdbc:mysql://139.199.82.83:3306/demo?useUnicode=true&useSSL=false&characterEncoding=utf8");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-        dsc.setUsername("root");
-        dsc.setPassword("alex");
+        dsc.setUsername("alex");
+        dsc.setPassword("536");
         mpg.setDataSource(dsc);
 
         // 包配置

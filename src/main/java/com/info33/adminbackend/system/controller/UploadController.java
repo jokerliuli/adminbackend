@@ -27,10 +27,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
- * Created by Joker
- * Date： 2018/12/17
- * Time: 16:03
- */
+ * @author JokerLiu
+ * @create 2018-12-29 10:36
+ * @desc 上传到腾讯云存储对象
+ **/
 @RestController
 @RequestMapping(value = "admin/upload")
 public class UploadController {
@@ -56,7 +56,7 @@ public class UploadController {
      * @return url
      */
     @PostMapping("/tengxun")
-    public Result Upload(@RequestParam(value = "file") MultipartFile file) {
+    public Result upload(@RequestParam(value = "file") MultipartFile file) {
         if (file == null) {
             return new Result(ResultStatusCode.UPLOAD_ERROR,"文件为空");
 //            return new UploadMsg(0, "文件为空", null);
@@ -78,7 +78,7 @@ public class UploadController {
 
         // 简单文件上传, 最大支持 5 GB, 适用于小文件上传, 建议 20 M 以下的文件使用该接口
         // 大文件上传请参照 API 文档高级 API 上传
-        File localFile = null;
+        File localFile;
         try {
             localFile = File.createTempFile("temp", null);
             file.transferTo(localFile);

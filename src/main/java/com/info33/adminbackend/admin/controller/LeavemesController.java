@@ -8,6 +8,7 @@ import com.google.common.base.CaseFormat;
 import com.info33.adminbackend.admin.entity.Leavemes;
 import com.info33.adminbackend.admin.service.ILeavemesService;
 import com.info33.adminbackend.system.entity.Result;
+import com.info33.adminbackend.system.enums.CommonStatus;
 import com.info33.adminbackend.system.enums.ResultStatusCode;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -56,7 +57,7 @@ public class LeavemesController {
                                 @RequestParam(name = "startTime", required = false) String startTime,
                                 @RequestParam(name = "endTime", required = false) String endTime,
                                 @RequestParam(name = "prop",required = false,defaultValue = "update_date") String prop,
-                                @RequestParam(name = "order",required = false,defaultValue = "descending") String order) {
+                                @RequestParam(name = "order",required = false,defaultValue = "Desc") String order) {
         IPage<Leavemes> leavemesIPage = new Page<>();
         leavemesIPage.setCurrent(page);
         leavemesIPage.setSize(limit);
@@ -65,7 +66,7 @@ public class LeavemesController {
         queryWrapper.eq("status", 1);
         prop = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, prop);
         log.info(prop);
-        if (order.equals("descending")){
+        if (CommonStatus.DESC.getMsg().equals(order)){
             queryWrapper.orderByDesc(prop);
         }else{
             queryWrapper.orderByAsc(prop);
