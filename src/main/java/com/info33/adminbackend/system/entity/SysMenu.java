@@ -1,11 +1,12 @@
 package com.info33.adminbackend.system.entity;
 
-import java.time.LocalDateTime;
-import com.info33.adminbackend.system.entity.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.util.List;
 
 /**
  * <p>
@@ -56,7 +57,11 @@ public class SysMenu extends BaseEntity {
      * 图标
      */
     private String menuIcon;
-
+    /**
+     * 子列表
+     */
+    @ApiModelProperty(value = "子列表")
+    private List<SysMenu> childList;
     /**
      * 链接地址
      */

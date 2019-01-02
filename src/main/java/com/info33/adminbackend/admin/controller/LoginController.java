@@ -2,9 +2,10 @@ package com.info33.adminbackend.admin.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.info33.adminbackend.system.entity.Result;
+import com.info33.adminbackend.system.entity.SysRole;
 import com.info33.adminbackend.system.entity.SysUser;
 import com.info33.adminbackend.system.enums.ResultStatusCode;
-import com.info33.adminbackend.system.mapper.SysUserMapper;
+import com.info33.adminbackend.system.service.ISysRoleService;
 import com.info33.adminbackend.system.service.ISysUserService;
 import com.info33.adminbackend.system.utils.MD5Util;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -31,8 +33,9 @@ import javax.annotation.Resource;
 @RestController
 public class LoginController {
 
+
     @Resource
-    private SysUserMapper sysUserMapper;
+    private ISysRoleService iSysRoleService;
 
     @GetMapping("test")
     public String test(){
@@ -80,11 +83,24 @@ public class LoginController {
         JSONObject json = new JSONObject();
         json.put("avatar",sysUser.getHeadImg());
         json.put("name",sysUser.getTrueName());
-        //角色写死
-        json.put("roles","admin");
+        List<SysRole> roleList = iSysRoleService.findByUserid(sysUser.getId());
+        json.put("roles",roleList);
         log.info("cuser/info/json:"+json);
         return new Result(ResultStatusCode.OK, json);
     }
+
+//    @GetMapping("admin/menu")
+//    public Result getMenu(){
+//        Subject sub = SecurityUtils.getSubject();
+//        SysUser sysUser = (SysUser) sub.getPrincipal();
+//        JSONObject json = new JSONObject();
+//        json.put("avatar",sysUser.getHeadImg());
+//        json.put("name",sysUser.getTrueName());
+//        List<SysRole> roleList = iSysRoleService.findByUserid(sysUser.getId());
+//        json.put("roles",roleList);
+//        log.info("cuser/info/json:"+json);
+//        return new Result(ResultStatusCode.OK, json);
+//    }
     /**
      * 退出登录
      * @return

@@ -17,8 +17,8 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
 import java.util.List;
 /**
  * @author JokerLiu
@@ -30,13 +30,13 @@ import java.util.List;
 public class ShiroRealm extends AuthorizingRealm {
 
 
-    @Autowired
+    @Resource
     private ISysUserService iSysUserService;
 
-    @Autowired
+    @Resource
     private ISysRoleService iSysRoleService;
 
-    @Autowired
+    @Resource
     private ISysMenuService iSysMenuService;
 
     /**
