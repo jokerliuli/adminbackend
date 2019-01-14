@@ -11,7 +11,7 @@ spring:
   datasource:
     name: demo
       #数据库配置略
-    url: jdbc:mysql://139.199.82.83:3306/demo?characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=UTC
+    url: jdbc:mysql://47.100.27.31:3306/demo?characterEncoding=utf-8&allowMultiQueries=true
     username: alex
     password: 536
       # 使用druid数据源
