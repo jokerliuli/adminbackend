@@ -58,7 +58,7 @@
         <append>true</append>
         <!--日志输出编码格式化-->
         <encoder>
-            <charset>UTF-8</charset>
+            <!--<charset>UTF-8</charset>-->
             <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
         </encoder>
     </appender>
@@ -89,7 +89,7 @@
         </rollingPolicy>
         <!--日志输出编码格式化-->
         <encoder>
-            <charset>UTF-8</charset>
+            <!--<charset>UTF-8</charset>-->
             <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
         </encoder>
     </appender>
@@ -120,7 +120,7 @@
         </rollingPolicy>
         <!--日志输出编码格式化-->
         <encoder>
-            <charset>UTF-8</charset>
+            <!--<charset>UTF-8</charset>-->
             <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
         </encoder>
     </appender>
@@ -151,7 +151,7 @@
         </rollingPolicy>
         <!--日志输出编码格式化-->
         <encoder>
-            <charset>UTF-8</charset>
+            <!--<charset>UTF-8</charset>-->
             <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
         </encoder>
     </appender>
