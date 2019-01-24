@@ -8,4 +8,14 @@
         from sys_menu a left join sys_role_menu b on a.id=b.menu_id
         where b.role_id=#{roleId}
     </select>
+
+    <select id="getMenu" resultType="com.info33.adminbackend.system.entity.SysMenu">
+        select
+        *
+        from sys_menu a left join sys_role_menu b on a.id=b.menu_id
+         where b.role_id=#{roleId}
+         and a.menu_type='MENU'
+        ORDER BY a.sort ASC
+    </select>
+
 </mapper>

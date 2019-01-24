@@ -1,7 +1,5 @@
 package com.info33.adminbackend.system.entity;
 
-import java.time.LocalDateTime;
-import com.info33.adminbackend.system.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;

@@ -33,6 +33,19 @@ public class SysMenu extends BaseEntity {
      */
     private String menuCode;
 
+    private String path;
+    private String redirect;
+    /**
+     * 组件名
+     */
+    private String component;
+    private String alwaysshow;
+    private String metaTitle;
+    private String metaIcon;
+    private String metaBreadcrumb;
+    private String metaNocache;
+    private String hidden;
+
     /**
      * 类型（MENU菜单,ACTION链接,BUTTON按钮）
      */
@@ -61,7 +74,7 @@ public class SysMenu extends BaseEntity {
      * 子列表
      */
     @ApiModelProperty(value = "子列表")
-    private List<SysMenu> childList;
+    private List<SysMenu> children;
     /**
      * 链接地址
      */
@@ -82,10 +95,7 @@ public class SysMenu extends BaseEntity {
      */
     private String name;
 
-    /**
-     * 组件名
-     */
-    private String component;
+
 
     /**
      * 是否跳转 1可跳 0不可

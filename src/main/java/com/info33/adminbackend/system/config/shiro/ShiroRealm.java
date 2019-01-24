@@ -88,7 +88,6 @@ public class ShiroRealm extends AuthorizingRealm {
                     for(SysRole role : roleList){
                         log.info(role.getName());
                         info.addRole(role.getName());
-
                         List<SysMenu> menuList = iSysMenuService.getAllMenuByRoleId(role.getId());
                         if(CollectionUtils.isNotEmpty(menuList)){
                             for (SysMenu menu : menuList){

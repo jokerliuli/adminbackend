@@ -1,8 +1,9 @@
 package com.info33.adminbackend.system.service;
 
-import com.info33.adminbackend.system.entity.SysMenu;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.info33.adminbackend.system.entity.SysMenu;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 
 /**
@@ -15,9 +16,18 @@ import java.util.List;
  */
 public interface ISysMenuService extends IService<SysMenu> {
     /**
-     * 根据roleId获得所有菜单权限
+     * 根据roleId获得所有权限
+     *
      * @param roleId
      * @return List<SysMenu>
      */
     List<SysMenu> getAllMenuByRoleId(Long roleId);
+
+    /**
+     * 根据roleID只获取前端左侧菜单(去重)
+     *
+     * @param roleId
+     * @return Set<SysMenu>
+     */
+    LinkedHashSet<SysMenu> getMenu(Long roleId);
 }

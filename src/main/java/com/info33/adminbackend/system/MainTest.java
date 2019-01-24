@@ -1,5 +1,8 @@
 package com.info33.adminbackend.system;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @author JokerLiu
  * @create 2018-12-29 10:36
@@ -7,25 +10,13 @@ package com.info33.adminbackend.system;
  **/
 public class MainTest {
     public static void main(String[] args) {
-        System.out.println(MainTest.getPrintSize(5000));
-    }
+        Set<String> set = new HashSet<>();
+        String a = new String("sdsdsd");
+        String b = new String("sdsdsd");
+        set.add(a);
+        set.add(b);
+        System.out.println(set);
+        System.out.println(a == b);
 
-    public static String getPrintSize(long size){
-        int temp = 0;
-        if (size<1024){
-            if (temp==0) {
-                return String.valueOf(size + 'B');
-            }
-            if (temp==1) {
-                return String.valueOf(size + 'B');
-            }
-            if (temp==2) {
-                return String.valueOf(size + 'B');
-            }
-        }else {
-            size = size / 1024;
-            temp++;
-        }
-        return null;
     }
 }

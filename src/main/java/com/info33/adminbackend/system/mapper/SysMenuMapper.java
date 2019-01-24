@@ -1,8 +1,9 @@
 package com.info33.adminbackend.system.mapper;
 
-import com.info33.adminbackend.system.entity.SysMenu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.info33.adminbackend.system.entity.SysMenu;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 
 /**
@@ -20,4 +21,11 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
      * @return List<SysMenu>
      */
     List<SysMenu> getAllMenuByRoleId(Long roleId);
+    /**
+     * 根据roleID获取前端左侧菜单
+     * @param roleId,id
+     * @return List<SysMenu>
+     */
+    LinkedHashSet<SysMenu> getMenu(Long roleId);
+
 }
